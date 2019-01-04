@@ -35,6 +35,7 @@ extension ViewController: CLLocationManagerDelegate {
 private func reverseGeocode(location: CLLocation) {
  CLGeocoder().reverseGeocodeLocation(location, completionHandler: { [unowned self] placemark, error in
   guard let p = placemark?.first else { self.setAnnotation(subtitle: nil, location: location); return }
+  // Address Example: 12345 Elm Street, Tampa, FL 33660, United States
   let address = "\(p.subThoroughfare ?? "") \(p.thoroughfare ?? "Unknown"), \(p.locality ?? ""), \(p.administrativeArea ?? "") \(p.postalCode ?? ""), \(p.country ?? "")."
   self.setAnnotation(subtitle: address, location: location)
  })
